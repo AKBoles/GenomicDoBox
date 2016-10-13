@@ -1,4 +1,3 @@
-#import novaclient.v1_1.client as nvclient
 from novaclient.client import Client
 from credentials import get_nova_creds_v2
 import sys
