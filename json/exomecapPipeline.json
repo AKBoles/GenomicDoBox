@@ -1,0 +1,30 @@
+{
+  "STEP1":{
+    "CMD1": "bwa mem -t 48 ~/ref_genome/genome_sorted.fa input_R1.fastq input_R2.fastq > exomecapstp1.sam"
+  },
+  "STEP2":{
+    "CMD1": "samtools view -hS -F 3844 -q 10 exomecapstp1.sam > exomecapstp2.sam"
+  },
+  "STEP3":{
+    "CMD1": "perl /usr/local/lib/perl/samCheckInsertNM.pl --input=exomecapstp2.sam --output=exomecapstp3.sam --qScore=50 --nmSize=5 --insertSize=100",
+    "CMD2": "rm input_R1.fastq input_R2.fastq"
+  },
+  "STEP4":{
+    "CMD1": "samtools view -bS -@ 48 exomecapstp3.sam > exomecapstp4.bam"
+  },
+  "STEP5":{
+    "CMD1": "java -Xmx64g -Djava.io.tmpdir=temp_dir -jar  /usr/local/lib/picard/picard.jar  SortSam SORT_ORDER=coordinate INPUT=exomecapstp4.bam OUTPUT=exomecapstp5.bam VALIDATION_STRINGENCY=LENIENT CREATE_INDEX=TRUE"
+  },
+  "STEP6":{
+    "CMD1": "java -Xmx64g -Djava.io.tmpdir=temp_dir -jar /usr/local/lib/picard/picard.jar MarkDuplicates INPUT=exomecapstp5.bam OUTPUT=exomecapstp6.bam METRICS_FILE=metrics CREATE_INDEX=true VALIDATION_STRINGENCY=LENIENT REMOVE_DUPLICATES=true"
+  },
+  "STEP7":{
+    "CMD1": "java -Xmx64g -Djava.io.tmpdir=temp_dir -jar /usr/local/lib/picard/picard.jar AddOrReplaceReadGroups INPUT=exomecapstp6.bam OUTPUT=exomecapstp7.bam RGID=2 RGLB=Unknown RGPL=Illumina RGPU=sampleIndex RGSM=sampleName VALIDATION_STRINGENCY=SILENT"
+  },
+  "STEP8":{
+    "CMD1": "java -Xmx64g -Djava.io.tmpdir=temp_dir -jar /usr/local/lib/picard/picard.jar ReorderSam INPUT=exomecapstp7.bam OUTPUT=exomecapstp8.bam R= ~/ref_genome/genome_sorted.fa"
+  },
+  "STEP9":{
+    "CMD1": "/usr/local/lib/sambamba/sambamba_v0.6.3 index -t 48 exomecapstp8.bam exomecapstp8.bai"
+  }
+}
