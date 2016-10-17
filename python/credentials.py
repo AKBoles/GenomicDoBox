@@ -17,7 +17,7 @@ def get_nova_creds():
     d['project_id'] = os.environ['OS_TENANT_NAME']
     return d
 
-def get_nova_credentials_v2():
+def get_nova_creds_v2():
     d = {}
     d['version'] = '2'
     d['username'] = os.environ['OS_USERNAME']
