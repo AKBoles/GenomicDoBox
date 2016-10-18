@@ -12,7 +12,7 @@ container = argv[1]
 with SwiftService() as swift:
     try:
         list_options = {"prefix": argv[2]}
-        list_parts_gen = swift.list(container=container)
+        list_parts_gen = swift.list(container=container, options=list_options)
         for page in list_parts_gen:
             if page["success"]:
                 objects = [
