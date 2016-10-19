@@ -1,0 +1,8 @@
+{
+  "STEP1":{
+    "CMD1": "bwa mem -t 48 ~/ref_genome/genome_sorted.fa input_R1.fastq input_R2.fastq > exomecapstp1.sam"
+  },
+  "STEP2":{
+    "CMD1": "samtools view -hS -F 3844 -q 10 exomecapstp1.sam > exomecapstp2.sam"
+  }
+}
