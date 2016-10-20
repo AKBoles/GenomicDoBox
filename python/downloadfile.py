@@ -10,17 +10,13 @@ def download_files(container, folder):
         		list_parts_gen = swift.list(container=container, options=list_options)
         		for page in list_parts_gen:
             			if page["success"]:
-                			objects = [
-                    				obj["name"] for obj in page["listing"]
-                			]
-                			for down_res in swift.download(container=container,objects=objects):
-                    				if down_res['success']:
-                        				print("'%s' downloaded" % down_res['object'])
-                    				else:
-                        				print("'%s' download failed" % down_res['object'])
-						print('stuck here?')
+                			objects = [obj["name"] for obj in page["listing"]]
+					for result in swift.download(container=container, objects=objects):
+						if result["success"]:
+							print("Downloaded %s successfully." %result["object"])
+						else:
+							print("Failed to download %s." %result["object"])
             			else:
                 			raise page["error"]
     		except SwiftError as e:
 			print('Error: %s' %e)
-	return
