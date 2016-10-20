@@ -1,8 +1,5 @@
 #!/bin/bash
 
-#set -eu
-#set -o pipefail 
-
 #this function grabs the json_key to create the openrc file
 function extract_json_key {
     RESULT=$(echo "$2" | sed "s/.*$1\": \"//g" | sed 's/".*//g')
@@ -13,8 +10,8 @@ JSON_VENDOR_DATA=$(curl -s http://169.254.169.254/openstack/latest/vendor_data.j
 SITE=$(extract_json_key "site" "$JSON_VENDOR_DATA")
 PROJECT_ID=$(extract_json_key "project_id" "$JSON_VENDOR_DATA")
 
-# create openrc file; taken from an openstack openrc file
-# changing the file by prompting the user to input username
+# create openrc file; file structure taken from an openstack openrc file
+# changing the file by prompting the user to input project name and username
 cat > /tmp/openrc <<-EOM
 #!/bin/bash
 
@@ -34,8 +31,9 @@ export OS_AUTH_URL=https://chi.tacc.chameleoncloud.org:5000/v2.0
 # With the addition of Keystone we have standardized on the term **tenant**
 # as the entity that owns the resources.
 export OS_TENANT_ID=3b3ea9fac1d740398501215181bebda3
-export OS_TENANT_NAME="CH-816717"
-export OS_PROJECT_NAME="CH-816717"
+read -r OS_PROJECT_INPUT
+export OS_TENANT_NAME=\$OS_PROJECT_INPUT
+export OS_PROJECT_NAME=\$OS_PROJECT_INPUT
 
 # In addition to the owning entity (tenant), OpenStack stores the entity
 # performing the action as the **user**.
