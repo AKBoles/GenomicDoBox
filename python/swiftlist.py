@@ -1,32 +1,26 @@
-import logging
-
+#!/usr/bin/env python
 from swiftclient.service import SwiftService, SwiftError
-from sys import argv
 
-logging.basicConfig(level=logging.ERROR)
-logging.getLogger("requests").setLevel(logging.CRITICAL)
-logging.getLogger("swiftclient").setLevel(logging.CRITICAL)
-logger = logging.getLogger(__name__)
+def is_filetype(x, filetype):
+	return(x["name"].lower().endswith(filetype))
 
-def is_filetype(x):
-    return (
-        x["name"].lower().endswith(argv[2])
-    )
+def list_contents(container, folder, filetype):
+	list_options = {"prefix": folder}
+	with SwiftService() as swift:
+		try:
+			list_parts_gen = swift.list(container=container, options=list_options)
+			for page in list_parts_gen:
+				if page["success"]:
+					for item in page["listing"]:
+						if is_filetype(item, filetype):
+							size = int(item["bytes"])
+							name = item["name"]
+							etag = item["hash"]
+							print("%s [size: %s] [etag: %s]" %(name, size, etag))
+				else:
+					raise page["error"]
+		except SwiftError as e:
+			print("SwiftError: %s" %e)
 
-container = argv[1]
-with SwiftService() as swift:
-    	try:
-        	list_parts_gen = swift.list(container=container)
-        	for page in list_parts_gen:
-            		if page["success"]:
-                		for item in page["listing"]:
-					if is_filetype(item):	
-						i_size = int(item["bytes"])
-                      				i_name = item["name"]
-                        			i_etag = item["hash"]
-                        			print("%s [size: %s] [etag: %s]" %(i_name, i_size, i_etag))
-            		else:
-                		raise page["error"]
-
-    	except SwiftError as e:
-        	logger.error(e.value)
+# testing
+list_contents("test_restore", "testing", "txt")
