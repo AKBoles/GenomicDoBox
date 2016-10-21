@@ -2,16 +2,17 @@
 
 from credentials import get_nova_creds_v2
 from novaclient.client import Client
+from sys import argv
 
-def associate_ip(name):
-	# get nova credentials
-	credentials = get_nova_creds_v2()
-	nova_client = Client(**credentials)
+name = argv[1]
+# get nova credentials
+credentials = get_nova_creds_v2()
+nova_client = Client(**credentials)
 
-	# create a new floating ip from the addresses available
-	ip_list = nova_client.floating_ip_pools.list()
-	floating_ip = nova_client.floating_ips.create(ip_list[0].name)
+# create a new floating ip from the addresses available
+ip_list = nova_client.floating_ip_pools.list()
+floating_ip = nova_client.floating_ips.create(ip_list[0].name)
 
-	# assign the created ip address to the instance input by user
-	instance = nova_client.servers.find(name)
-	instance.add_floating_ip(floating_ip)
+# assign the created ip address to the instance input by user
+instance = nova_client.servers.find(name)
+instance.add_floating_ip(floating_ip)
