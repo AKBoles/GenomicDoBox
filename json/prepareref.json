@@ -1,0 +1,14 @@
+{
+  "STEP1":{
+    "CMD1": "bwa index /home/cc/ref_genome/genome_sorted.fa"
+  }
+  "STEP2":{
+    "CMD1": "java -Xmx64g -Djava.io.tmpdir=/tmp/temp_dir -jar /usr/local/lib/picard/picard.jar CreateSequenceDictionary R= /home/cc/ref_genome/genome_sorted.fa O= genome_sorted.dict"
+  },
+  "STEP3":{
+    "CMD1": "samtools faidx /home/cc/ref_genome/genome_sorted.fa"
+  },
+  "STEP4":{
+    "CMD1": "java -Xmx64g -Djava.io.tmpdir=/tmp/temp_dir -jar /usr/local/lib/picard/picard.jar CreateSequenceDictionary R= /home/cc/ref_genome/genome_sorted.fa O= genome_sorted.fa.dict"
+  }
+}
