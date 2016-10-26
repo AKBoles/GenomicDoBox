@@ -119,13 +119,14 @@ def download_files(container, folder, delete_flag):
 			print('Error: %s' %e)
 
 # upload a list of objects to a container
-def upload_files(container, objs):
+def upload_files(container, options, objs):
 # first argument is the container to upload file to
-# second argument is a list of the files to upload
+# second argument is a dictionary of the options to supply to SwiftUploadObject 
+# third argument is a list of the files to upload
 	with SwiftService() as swift, OutputManager() as out_manager:
     		try:
 			# create the SwiftUploadObject list of objects to upload
-			objs = [SwiftUploadObject(obj) for obj in objs]
+			objs = [SwiftUploadObject(obj, options=options) for obj in objs]
         		# Schedule uploads on the SwiftService thread pool and iterate over the results
         		for result in swift.upload(container, objs):
             			if result['success']:
