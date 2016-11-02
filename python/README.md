@@ -1,11 +1,17 @@
 This folder contains scripts to perform certain tasks using the Openstack Python APIs:
   
-  -python-keystoneclient : Identity Service : http://docs.openstack.org/developer/python-keystoneclient/
-  -python-glanceclient : Image Service : http://docs.openstack.org/developer/python-glanceclient/
-  -python-novaclient : Compute Service : http://docs.openstack.org/developer/python-novaclient/
-  -python-quantumclient : Networking Service : http://docs.openstack.org/developer/python-quantumclient/
-  -python-cinderclient : Block Storage Service : http://docs.openstack.org/developer/python-cinderclient/
-  -python-swiftclient : Object Storage Service : http://docs.openstack.org/developer/python-swiftclient/
+  -python-keystoneclient : Identity Service : 
+	http://docs.openstack.org/developer/python-keystoneclient/
+  -python-glanceclient : Image Service : 
+	http://docs.openstack.org/developer/python-glanceclient/
+  -python-novaclient : Compute Service : 
+	http://docs.openstack.org/developer/python-novaclient/
+  -python-quantumclient : Networking Service : 
+	http://docs.openstack.org/developer/python-quantumclient/
+  -python-cinderclient : Block Storage Service : 
+	http://docs.openstack.org/developer/python-cinderclient/
+  -python-swiftclient : Object Storage Service : 
+	http://docs.openstack.org/developer/python-swiftclient/
 
 To follow: instructions on how to use the scripts in this folder for your own project.
 
@@ -13,37 +19,37 @@ openstackfunctions.py contains the following functions (showing function name an
 
 from openstackfunctions import *
 
-1. file_present
+1. filepresent
 
-file_present("container_name", "folder_name", "filetype")
+filepresent("container name", "folder name", "filetype")
 
 2. Three credential functions:
-  1. "get_keystone_creds"
-  2. "get_nova_creds"
-  3. get_nova creds_v2"
+  1. "getkeystonecreds"
+  2. "getnovacreds"
+  3. "getnovacredsv2"
 
-novacreds = get_nova_creds()
+novacreds = getnovacreds()
 nova = Client(\*\*creds)
-nova2creds = get_nova_creds_v2()
+nova2creds = getnovacredsv2()
 nova = Client(\*\*creds)
 
-3. delete_server
+3. deleteserver
 
-delete_server("server_name")
+deleteserver("server name")
 
-4. download_files
+4. downloadfiles
 
-download_files("container_name", "folder_name")
+downloadfiles("container name", "folder name")
 
-5. list_contents
+5. listcontents
 
-list_contents("container_name", "folder_name", "filetype")
+listcontents("container name", "folder name", "filetype")
 
-6. associate_ip
+6. associateip
 
-associate_ip("server_name")
+associateip("servername")
 
-7. upload_files:
+7. uploadfiles:
 
-object_list = ["filename1", "filename2", "filename3"]
-upload_files("container_name", object_list)
+objectlist = ["filename1", "filename2", "filename3"]
+uploadfiles("container name", [objectlist])
