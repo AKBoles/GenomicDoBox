@@ -8,7 +8,7 @@ import os
 
 
 # credential functions
-def get_keystone_creds():
+def getkeystonecreds():
     d = {}
     d['username'] = os.environ['OS_USERNAME']
     d['password'] = os.environ['OS_PASSWORD']
@@ -16,7 +16,7 @@ def get_keystone_creds():
     d['tenant_name'] = os.environ['OS_TENANT_NAME']
     return d
  
-def get_nova_creds():
+def getnovacreds():
     d = {}
     d['username'] = os.environ['OS_USERNAME']
     d['api_key'] = os.environ['OS_PASSWORD']
@@ -24,7 +24,7 @@ def get_nova_creds():
     d['project_id'] = os.environ['OS_TENANT_NAME']
     return d
 
-def get_nova_creds_v2():
+def getnovacreds_v2():
     d = {}
     d['version'] = '2'
     d['username'] = os.environ['OS_USERNAME']
@@ -35,15 +35,15 @@ def get_nova_creds_v2():
 
 # swift functions:
 # define function to check for certain file type
-def is_filetype(x, filetype):
+def isfiletype(x, filetype):
     	return (
         	x["name"].lower().endswith(filetype)
     	)
 
 # check if file is present in folder or not
-def file_present(container, folder, filetype):
+def filepresent(container, folder, filetype):
 	# first argument is container name 
-  # second argument is folder name
+  	# second argument is folder name
 	list_options = {"prefix": folder}
 	with SwiftService() as swift:
     		try:
@@ -61,7 +61,7 @@ def file_present(container, folder, filetype):
 			print('Error: %s' %e)
 
 # print out the contents of an folder --> given filetype
-def list_contents(container, folder, filetype):
+def listcontents(container, folder, filetype):
 	list_options = {"prefix": folder}
 	with SwiftService() as swift:
 		try:
@@ -80,7 +80,7 @@ def list_contents(container, folder, filetype):
 			print("SwiftError: %s" %e)
 
 # delete a list of objects in a container
-def delete_files(container, objs):
+def deletefiles(container, objs):
 	# first argument is the container where objects are located
 	# second argument is a list containing all of the objects to delete
 	with SwiftService() as swift:
@@ -95,7 +95,7 @@ def delete_files(container, objs):
 			print('Error: %s' %e)
 
 # download and then optionally delete files in a container
-def download_files(container, folder, delete_flag):
+def downloadfiles(container, folder, delete_flag):
 	# argument one is the container name
 	# argument two is the folder name within the container
 	# argument three is a flag to delete file from container if set true
@@ -119,7 +119,7 @@ def download_files(container, folder, delete_flag):
 			print('Error: %s' %e)
 
 # upload a list of objects to a container
-def upload_files(container, options, objs):
+def uploadfiles(container, options, objs):
 # first argument is the container to upload file to
 # second argument is a dictionary of the options to supply to SwiftUploadObject 
 # third argument is a list of the files to upload
@@ -147,7 +147,7 @@ def upload_files(container, options, objs):
 
 # nova functions:
 # delete server given the server name
-def delete_server(name):
+def deleteserver(name):
 	  # grab the nova credentials from credentials.py
 	  creds = get_nova_creds_v2()
 	  nova = Client(**creds)
@@ -168,7 +168,7 @@ def delete_server(name):
 		  print("The server %s was deleted." % name)
 
 # associate floating ip address to a server
-def associate_ip(name):
+def associateip(name):
 	  # get nova credentials
 	  credentials = get_nova_creds_v2()
 	  nova_client = Client(**credentials)
@@ -180,5 +180,3 @@ def associate_ip(name):
   	# assign the created ip address to the instance input by user
 	  instance = nova_client.servers.find(name)
 	  instance.add_floating_ip(floating_ip)
-
-
