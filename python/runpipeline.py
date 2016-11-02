@@ -22,11 +22,9 @@ def renameFileName():
 	os.system('./upload.sh')
 	return
 
-def runPipelineCommands():
-	# retrieve the text file names to be processed, change them accordingly
-	retrieveFile()
+def runjsoncommands(filename):
 	# Open the config file containing the commands, load into ordered dictionary
-	command_file = open('../json/sample.json')
+	command_file = open(filename)
 	commands = json.load(command_file, object_pairs_hook=collections.OrderedDict)
 	command_file.close()
 	#Traverse through cmd config file structure

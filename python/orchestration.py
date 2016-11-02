@@ -11,8 +11,8 @@
 import os, subprocess
 from sys import argv
 from time import sleep
-from openstackfunctions import *
-from runpipeline import run_json_commands
+import openstackfunctions as osf
+import runpipeline as runp
 
 # constants for program
 MAIN_DIRECTORY = '/home/cc/GenomicDoBox/'
@@ -21,35 +21,57 @@ JSON_DIRECTORY = MAIN_DIRECTORY + 'json/'
 PYTHON_DIRECTORY = MAIN_DIRECTORY + 'python/'
 REF_DIRECTORY = '/home/cc/ref_genome/'
 CONTAINER = 'GenomicsStorage'
-REF_FOLDER = 'RefGenome'
+REF_FOLDER = 'ReferenceData'
 HG19_DIRECTORY = '/home/cc/hg19_database'
-HG19_FOLDER = 'HG19Database'
+HG19_FOLDER = 'HG19Data'
+TO_BE_PROCESSED = 'to_be_processed'
+
+def chdir(dest):
+	old = os.getcwd()
+	os.chdir(dest)
+	new = os.getcwd()
+	print('old: %s, new: %s' %(old, new))
+
+def prepref():
+	# prepare reference genome for use by calling prepareref.json
+	if runp.runjsoncommands(JSON_DIRECTORY + 'prepareref.json'):
+        	print('Preparing Reference Genome was successful.')
+
+def checkref():
+	# first check for hg19 database:
+	if not os.listdir(HG19_DIRECTORY):
+		chdir(HG19_DIRECTORY)
+        	print('HG19 database is not present. Need to download.')
+        	osf.downloadfiles(CONTAINER, HG19_FOLDER, False)
+	else:
+		print('HG19 database is already present in server!')
+	if not os.listdir(REF_DIRECTORY):
+        	chdir(REF_DIRECTORY)
+        	print('Reference Genome is not present. Need to download.')
+        	osf.downloadfiles(CONTAINER, REF_FOLDER, False)
+	elif len(os.listdir(REF_DIRECTORY)) is 1:
+		chdir(RED_DIRECTORY)
+		print('Reference Genome is downloaded but needs to be prepared -- beginning process.')
+		prepref()
+	else:
+		print('Reference Genome is already present in server and prepared!')
+	return True
 
 print('Beginning implementation.')
 # step 0: create, source openstack openrc file to access chameleon cloud --> needs to be completed
-#os.system("export OS_PROJECT_INPUT=" + argv[1])
-#os.system("export OS_USERNAME_INPUT=" + argv[2])
-#os.system("export OS_PASSWORD_INPUT=" + "Parzival65536;")
-#subprocess.call(JSON_DIRECTORY + "createopenrc.sh", shell=True)
-#os.system("source /home/cc/openstack_docs/CH-818165.sh")
 # step 1: check file_present function until it returns true
-while not file_present(CONTAINER, "", "txt"):
+while not osf.filepresent(CONTAINER, TO_BE_PROCESSED, "fastq"):
 	print('File type fastq still not present.')
 	sleep(10)
 # step 2: boot instance --> currently using boot.sh
 # as of now, going to let the instance be this one
 # step 3: download files to be processed
-if download_files(CONTAINER, "", False):
+# change directory to 'data_processing/to_be_processed'
+chdir('/home/cc/data_processing/to_be_processed')
+if osf.downloadfiles(CONTAINER, TO_BE_PROCESSED, False):
 	print('Download successful!')
 # step 4: run chosen pipeline on files
-# this requires the reference genome and snp_databases to be downloaded
-# create function to check if these files exist in server, if not download them
-if not os.listdir(REF_DIRECTORY):
-	print('Reference Genome is not present. Need to download.')
-	download_files(CONTAINER, REF_FOLDER, False)
-if not os.listdir(HG19_DIRECTORY):
-        print('HG19 database is not present. Need to download.')
-        download_files(CONTAINER, HG19_FOLDER, False)
-# prepare reference genome for use by calling prepareref.json
-if run_pipeline_commands(JSON_DIRECTORY + 'prepareref.json'):
-	print('Prepare reference genome was successful.')
+# this requires the reference genome and snp_databases to be downloaded / prepared
+if checkref():
+	print('The database and reference genome were downloaded and prepared.')
+
