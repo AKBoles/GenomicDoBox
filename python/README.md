@@ -39,7 +39,7 @@ The following is an updated list of the python folder contents. The script is ma
 
 3. orchestration.py : in-progress, working
 
-> This script starts / runs the application. To be done: move this out of the python folder and into the main folder.
+> This script starts / runs the application.
 
 4. runpipeline.py - working
 
