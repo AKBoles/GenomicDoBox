@@ -31,7 +31,7 @@ Contains Common Workflow Language scripts to be used alongside the JSON scripts.
 
 1. run requirements.txt by using: 
     ~~~
-    $ pip install -r requirements.txt
+    $ sudo pip install -r requirements.txt
     ~~~
 
 2. Install all of the necessary processing tools using written in INSTALLATION.md
