@@ -29,15 +29,22 @@ Contains Common Workflow Language scripts to be used alongside the JSON scripts.
 
 ### Running Instructions ###
 
-1. run requirements.txt by using: $ pip install -r requirements.txt
+1. run requirements.txt by using: 
+    ~~~
+    $ pip install -r requirements.txt
+    ~~~
 
-2. Install all of the necessary processing tools using: $ python setup.py
+2. Install all of the necessary processing tools using written in INSTALLATION.md
     
-      * Note that this will prompt the user to input the location of a JSON file containing their desired pipeline to be run.
+      * Note that a setup.py python script is being worked on to remove the need to install necessary tools via copy and paste.
       
-3. Start the application by using: $ python orchestration.py 
+3. Start the application by using: 
+    ~~~
+    $ python orchestration.py sample.json
+    ~~~
     
       * Note that the user will be required to first source an openrc file that logs them into their Chameleon Cloud project.
+      * Currently the user needs to specify the location of a JSON file containing their desired pipeline to be run as a command line argument.
 
 
 ### Github Link ###
