@@ -12,17 +12,19 @@ The following is an updated list of the python folder contents. The script is ma
 
 2. openstackfunctions.py : working
 
+> This script contains the following functions that can be used in other python scripts. To be done: detailed description of each function.
+>
 > 1. filepresent("container name", "folder name", "filetype")
 >
 > 2. Three credential functions:
 >
->      *novacreds = getnovacreds()
+>    novacreds = getnovacreds()
 >    
->   *nova = Client(\*\*creds)
+>    nova = Client(\*\*creds)
 >    
->   *nova2creds = getnovacredsv2()
+>    nova2creds = getnovacredsv2()
 >    
->   *nova = Client(\*\*creds)
+>    nova = Client(\*\*creds)
 >
 > 3. deleteserver("server name")
 >
@@ -37,13 +39,17 @@ The following is an updated list of the python folder contents. The script is ma
 
 3. orchestration.py : in-progress, working
 
-> information about this
+> This script starts / runs the application. To be done: move this out of the python folder and into the main folder.
 
 4. runpipeline.py - working
 
-> information about this
+> This script contains a function to run a JSON script.
+>
+> Function: runjsoncommands("file name")
 
 ### OpenStack Links ###
+
+> The following OpenStack clients are potentially used in openstackfunctions.py
 
 1. python-keystoneclient : Identity Service : http://docs.openstack.org/developer/python-keystoneclient/
 
