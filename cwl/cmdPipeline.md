@@ -23,6 +23,8 @@ cmdPipeline.md
 
 ~~~
 /home/cc/
+	GenomicDoBox/
+		all_folders_contained_in_this_github/
 	RefData/
 		sorted_genome.fa
 		all_other_files_for_genome
@@ -36,7 +38,7 @@ cmdPipeline.md
 /usr/local/lib/
 	picard/
 		picard.jar
-	other_tools_not_used_yet
+	other_tools_not_used_yet/
 ~~~
 
 ### Run Commands ###
