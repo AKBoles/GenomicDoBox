@@ -36,8 +36,8 @@ The following is an updated list of the python folder contents. The script is ma
     > To run, input the following from a command line:
 
     ~~~
-    $ cwl-runner bwa_mem.cwl --numthreads \# --genome genome_sorted.fa --fastq_one input_R1.fastq --fastq_two inpute_R2.fastq --outfile     out.sam
-~~~
+    $ cwl-runner bwa_mem.cwl --numthreads \# --genome genome_sorted.fa --fastq_one input_R1.fastq --fastq_two inpute_R2.fastq --outfile out.sam
+    ~~~
 
 ### Common Workflow Language Description ###
 
