@@ -38,7 +38,7 @@ Contains Common Workflow Language scripts to be used alongside the JSON scripts.
     
       * Note that a setup.py python script is being worked on to remove the need to install necessary tools via copy and paste.
       
-3. Start the application by using: 
+3. Start the application by navigating to the python folder and then using: 
     ~~~
     $ python orchestration.py sample.json
     ~~~
