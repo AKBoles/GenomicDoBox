@@ -1,5 +1,7 @@
 #!/usr/bin/env python
 
+# TO DO: CHANGE DIRECTORY NAMES TO MATCH SWIFT CONTAINER!!!
+
 # this file will be used to run the necessary scripts to perform the following:
 # 0. source openrc file --> could create one then source perhaps
 # 1. check Swift container for files to process
