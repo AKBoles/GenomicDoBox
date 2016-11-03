@@ -9,3 +9,6 @@ python-glanceclient
 python-quantumclient
 python-cinderclient
 #
+###### CWL Requirements ######
+cwlref-runner
+#
