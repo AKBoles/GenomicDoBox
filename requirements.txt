@@ -1,0 +1,11 @@
+#
+####### requirements.txt #######
+#
+###### OpenStack Requirements ######
+python-swiftclient
+python-novaclient
+python-keystoneclient
+python-glanceclient
+python-quantumclient
+python-cinderclient
+#
