@@ -34,7 +34,9 @@ cmdPipeline.md
 	
 ~~~
 /usr/local/lib/
-	DESCRIBE TOOLS
+	picard/
+		picard.jar
+	other_tools_not_used_yet
 ~~~
 
 ### Run Commands ###
