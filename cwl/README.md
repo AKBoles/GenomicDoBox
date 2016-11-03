@@ -23,7 +23,7 @@ The following is an updated list of the python folder contents. The script is ma
     >
     >    * Number of threads
     >
-    >    * reference genome
+    >    * Reference genome
     >
     >    * FASTQ file one
     >
@@ -42,3 +42,5 @@ The following is an updated list of the python folder contents. The script is ma
 ### Common Workflow Language Description ###
 
 Link: http://www.commonwl.org/
+
+To be completed: a more complete description of CWL scripts and why they are useful.
