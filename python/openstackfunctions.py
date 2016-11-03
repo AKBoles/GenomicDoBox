@@ -51,7 +51,7 @@ def filepresent(container, folder, filetype):
         		for page in list_parts_gen:
             			if page["success"]:
                 			for item in page["listing"]:
-						if isfiletype(item, filetype):	
+						if isfiletype(item, filetype):
 							return True
 					return False
             			else:

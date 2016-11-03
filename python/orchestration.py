@@ -24,6 +24,7 @@ CONTAINER = 'GenomicsStorage'
 REF_FOLDER = 'ReferenceData'
 HG19_DIRECTORY = '/home/cc/hg19_database'
 HG19_FOLDER = 'HG19Data'
+DATA_DIRECTORY = '/home/cc/data_processing/to_be_processed'
 TO_BE_PROCESSED = 'to_be_processed'
 
 def chdir(dest):
@@ -41,16 +42,16 @@ def checkref():
 	# first check for hg19 database:
 	if not os.listdir(HG19_DIRECTORY):
 		chdir(HG19_DIRECTORY)
-        	print('HG19 database is not present. Need to download.')
-        	osf.downloadfiles(CONTAINER, HG19_FOLDER, False)
+		print('HG19 database is not present. Need to download.')
+		osf.downloadfiles(CONTAINER, HG19_FOLDER, False)
 	else:
 		print('HG19 database is already present in server!')
 	if not os.listdir(REF_DIRECTORY):
-        	chdir(REF_DIRECTORY)
-        	print('Reference Genome is not present. Need to download.')
-        	osf.downloadfiles(CONTAINER, REF_FOLDER, False)
+		chdir(REF_DIRECTORY)
+		print('Reference Genome is not present. Need to download.')
+		osf.downloadfiles(CONTAINER, REF_FOLDER, False)
 	elif len(os.listdir(REF_DIRECTORY)) is 1:
-		chdir(RED_DIRECTORY)
+		chdir(REF_DIRECTORY)
 		print('Reference Genome is downloaded but needs to be prepared -- beginning process.')
 		prepref()
 	else:
@@ -67,9 +68,13 @@ while not osf.filepresent(CONTAINER, TO_BE_PROCESSED, "fastq"):
 # as of now, going to let the instance be this one
 # step 3: download files to be processed
 # change directory to 'data_processing/to_be_processed'
-chdir('/home/cc/data_processing/to_be_processed')
-if osf.downloadfiles(CONTAINER, TO_BE_PROCESSED, False):
-	print('Download successful!')
+chdir('/home/cc/data_processing')
+if not os.listdir(DATA_DIRECTORY):
+	print('FASTQ files need to be downloaded.')
+	if osf.downloadfiles(CONTAINER, TO_BE_PROCESSED, False):
+		print('Download successful!')
+else:
+	print('There are already files ready for processing!')
 # step 4: run chosen pipeline on files
 # this requires the reference genome and snp_databases to be downloaded / prepared
 if checkref():
