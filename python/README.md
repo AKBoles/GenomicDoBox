@@ -1,55 +1,58 @@
-This folder contains scripts to perform certain tasks using the Openstack Python APIs:
-  
-  -python-keystoneclient : Identity Service : 
-	http://docs.openstack.org/developer/python-keystoneclient/
-  -python-glanceclient : Image Service : 
-	http://docs.openstack.org/developer/python-glanceclient/
-  -python-novaclient : Compute Service : 
-	http://docs.openstack.org/developer/python-novaclient/
-  -python-quantumclient : Networking Service : 
-	http://docs.openstack.org/developer/python-quantumclient/
-  -python-cinderclient : Block Storage Service : 
-	http://docs.openstack.org/developer/python-cinderclient/
-  -python-swiftclient : Object Storage Service : 
-	http://docs.openstack.org/developer/python-swiftclient/
+Python Code
+=============
 
-To follow: instructions on how to use the scripts in this folder for your own project.
+### Folder Contents ###
 
-openstackfunctions.py contains the following functions (showing function name and how to call in a different script):
+The following is an updated list of the python folder contents. The script is marked as "working", "in-progress, working", or "in-progress, not working".
 
-from openstackfunctions import *
+1. bootinstance.py : in-progress, not working
 
-1. filepresent
+> This script will be used to boot a new bare metal instance in Chameleon Cloud.
+> Currently receiving an error when the instance is built dealing with host allocation.
 
-filepresent("container name", "folder name", "filetype")
+2. openstackfunctions.py : working
 
-2. Three credential functions:
-  1. "getkeystonecreds"
-  2. "getnovacreds"
-  3. "getnovacredsv2"
+> 1. filepresent("container name", "folder name", "filetype")
+>
+> 2. Three credential functions:
+>
+>      *novacreds = getnovacreds()
+>    
+>   *nova = Client(\*\*creds)
+>    
+>   *nova2creds = getnovacredsv2()
+>    
+>   *nova = Client(\*\*creds)
+>
+> 3. deleteserver("server name")
+>
+> 4. downloadfiles("container name", "folder name")
+>
+> 5. listcontents("container name", "folder name", "filetype")
+>
+> 6. associateip("servername")
+>
+> 7. uploadfiles("container name", [objectlist])
+>
 
-novacreds = getnovacreds()
-nova = Client(\*\*creds)
-nova2creds = getnovacredsv2()
-nova = Client(\*\*creds)
+3. orchestration.py : in-progress, working
 
-3. deleteserver
+> information about this
 
-deleteserver("server name")
+4. runpipeline.py - working
 
-4. downloadfiles
+> information about this
 
-downloadfiles("container name", "folder name")
+### OpenStack Links ###
 
-5. listcontents
+1. python-keystoneclient : Identity Service : http://docs.openstack.org/developer/python-keystoneclient/
 
-listcontents("container name", "folder name", "filetype")
+2. python-glanceclient : Image Service : http://docs.openstack.org/developer/python-glanceclient/
 
-6. associateip
+3. python-novaclient : Compute Service : http://docs.openstack.org/developer/python-novaclient/
 
-associateip("servername")
-
-7. uploadfiles:
-
-objectlist = ["filename1", "filename2", "filename3"]
-uploadfiles("container name", [objectlist])
+4. python-quantumclient : Networking Service : http://docs.openstack.org/developer/python-quantumclient/
+	
+5. python-cinderclient : Block Storage Service : http://docs.openstack.org/developer/python-cinderclient/
+	
+6. python-swiftclient : Object Storage Service : http://docs.openstack.org/developer/python-swiftclient/
