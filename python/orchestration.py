@@ -21,10 +21,10 @@ MAIN_DIRECTORY = '/home/cc/GenomicDoBox/'
 BASH_DIRECTORY = MAIN_DIRECTORY + 'bash/'
 JSON_DIRECTORY = MAIN_DIRECTORY + 'json/'
 PYTHON_DIRECTORY = MAIN_DIRECTORY + 'python/'
-REF_DIRECTORY = '/home/cc/ref_genome/'
+REF_DIRECTORY = '/home/cc/RefData/'
 CONTAINER = 'GenomicsStorage'
 REF_FOLDER = 'ReferenceData'
-HG19_DIRECTORY = '/home/cc/hg19_database'
+HG19_DIRECTORY = '/home/cc/HG19Data'
 HG19_FOLDER = 'HG19Data'
 DATA_DIRECTORY = '/home/cc/data_processing/to_be_processed'
 TO_BE_PROCESSED = 'to_be_processed'
@@ -83,9 +83,9 @@ else:
 if checkref(logfile):
 	print('The database and reference genome were downloaded and prepared.')
 # now to run the chosen pipeline --> currently just running sample.json in json folder
-chdir('/home/cc/data_processing/to_be_processed')
-if runp.runjsoncommands(JSON_DIRECTORY + argv[1], logfile):
-	print('Running %s was successful!' %argv[1])
+#chdir('/home/cc/data_processing/to_be_processed')
+#if runp.runjsoncommands(JSON_DIRECTORY + argv[1], logfile):
+#	print('Running %s was successful!' %argv[1])
 
 # once the process is done, close logfile
 logfile.close()
