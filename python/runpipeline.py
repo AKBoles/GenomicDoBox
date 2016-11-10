@@ -17,3 +17,9 @@ def runjsoncommands(filename, logfile):
 			out = os.popen(cmd).read()
 		stepNum = stepNum + 1
 	return
+
+def choosepipeline(choice):
+	# create a "choice.txt" that contains the user's choice of pre-built pipelines
+	with open('choice.txt', 'w') as f:
+		f.write(choice)
+	return True
