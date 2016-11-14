@@ -1,22 +1,31 @@
+# to be done: fix functions to catch errors!
+# This will make it easier to import for use in main script
+
+
+# import statements
 import os, sys, re, json, time
 import collections
 import openstackfunctions as osf
 import runpipeline as runp
 
 # constants for program
-# do not really want these in both directories
+# various directory constants
 MAIN_DIRECTORY = '/home/cc/GenomicDoBox/'
 BASH_DIRECTORY = MAIN_DIRECTORY + 'bash/'
 JSON_DIRECTORY = MAIN_DIRECTORY + 'json/'
 PYTHON_DIRECTORY = MAIN_DIRECTORY + 'python/'
 REF_DIRECTORY = '/home/cc/RefData/'
-CONTAINER = 'GenomicsStorage'
-REF_FOLDER = 'ReferenceData'
 HG19_DIRECTORY = '/home/cc/HG19Data'
-HG19_FOLDER = 'HG19Data'
 DATA_DIRECTORY = '/home/cc/DataProcessing'
-TO_BE_PROCESSED = 'ToBeProcessed'
+UPLOAD_DIRECTORY = '/home/cc/Uploads'
 DOWNLOAD_DIRECTORY = '/home/cc/Downloads'
+PROCESS_DIRECTORY = '/home/cc/DataProcessing'
+# swift container contstants
+CONTAINER = 'GenomicsStorage'
+TEST_CONTAINER = 'GenomicDoBox'
+REF_FOLDER = 'ReferenceData'
+HG19_FOLDER = 'HG19Data'
+TO_BE_PROCESSED = 'ToBeProcessed'
 
 def chdir(dest):
         old = os.getcwd()
@@ -51,10 +60,10 @@ def movefastq(name):
 	# do something with the log text file!
 
 def deletefiles():
-	for name in os.listdir('/home/cc/DataProcessing'):
-		os.remove('/home/cc/DataProcessing/' + name)
-	for name in os.listdir('/home/cc/Uploads'):
-                os.remove('/home/cc/Uploads/' + name)
+	for name in os.listdir(DATA_DIRECTORY):
+		os.remove(DATA_DIRECTORY + '/'  + name)
+	for name in os.listdir(UPLOAD_DIRECTORY):
+                os.remove(UPLOAD_DIRECTORY + '/' + name)
 	return True
 
 #def prepenv():
