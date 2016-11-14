@@ -83,6 +83,9 @@ def checkref(logfile):
                 osf.downloadfiles(CONTAINER, REF_FOLDER, False)
 		if moveref('genome'): # does this work?
 			print('Reference moved correctly.')
+		# this means that it must also be prepared!
+		print('Reference Genome is downloaded but needs to be prepared -- beginning process.')
+                prepref(logfile)
         elif len(os.listdir(REF_DIRECTORY)) is 1:
                 chdir(REF_DIRECTORY)
                 print('Reference Genome is downloaded but needs to be prepared -- beginning process.')
