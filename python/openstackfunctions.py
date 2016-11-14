@@ -123,12 +123,14 @@ def uploadfiles(container, options, objs):
 # first argument is the container to upload file to
 # second argument is a dictionary of the options to supply to SwiftUploadObject 
 # third argument is a list of the files to upload
-	with SwiftService() as swift, OutputManager() as out_manager:
+	with SwiftService() as swift:
     		try:
 			# create the SwiftUploadObject list of objects to upload
-			objs = [SwiftUploadObject(obj, options=options) for obj in objs]
+			#objs = [SwiftUploadObject(obj, options=options) for obj in objs]
+			objs = [SwiftUploadObject(obj) for obj in objs]
         		# Schedule uploads on the SwiftService thread pool and iterate over the results
-        		for result in swift.upload(container, objs):
+        		#for result in swift.upload(container, objs):
+			for result in swift.upload(container, objs):
             			if result['success']:
                 			if 'object' in result:
                     				print("Successfully uploaded %s." %result['object'])
