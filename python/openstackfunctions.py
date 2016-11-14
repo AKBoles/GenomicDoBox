@@ -94,11 +94,10 @@ def deletefiles(container, objs):
     		except SwiftError as e:
 			print('Error: %s' %e)
 
-# download and then optionally delete files in a container
-def downloadfiles(container, folder, delete_flag):
+# download files from a container
+def downloadfiles(container, folder):
 	# argument one is the container name
 	# argument two is the folder name within the container
-	# argument three is a flag to delete file from container if set true
 	with SwiftService() as swift:
     		try:
         		list_options = {"prefix": folder}
@@ -109,8 +108,6 @@ def downloadfiles(container, folder, delete_flag):
 					for result in swift.download(container=container, objects=objects):
 						if result["success"]:
 							print("Downloaded %s successfully." %result["object"])
-							if delete_flag:
-								delete_files(container, objects)				
 						else:
 							print("Failed to download %s." %result["object"])
             			else:
