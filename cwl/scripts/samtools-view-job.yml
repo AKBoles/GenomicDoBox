@@ -1,0 +1,6 @@
+format: 3844
+quality: 10
+input:
+  class: File
+  path: step1.sam
+output: step2.sam

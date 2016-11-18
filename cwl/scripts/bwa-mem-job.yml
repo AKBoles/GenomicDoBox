@@ -1,0 +1,11 @@
+numthreads: 48
+genome:
+  class: File
+  path: /home/cc/RefData/genome_sorted.fa
+fastq_one:
+  class: File
+  path: input_R1.fastq
+fastq_two:
+  class: File
+  path: input_R2.fastq
+output: step1.sam
