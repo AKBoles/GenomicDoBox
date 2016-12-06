@@ -81,7 +81,7 @@ def checkref(logfile):
         if not os.listdir(HG19_DIRECTORY):
                 chdir(DOWNLOAD_DIRECTORY)
                 print('HG19 database is not present. Need to download.')
-                osf.downloadfiles(CONTAINER, HG19_FOLDER, False)
+                osf.downloadfiles(CONTAINER, HG19_FOLDER)
 		if moveref('data'): # does this work?
                         print('Reference moved correctly.')
         else:
@@ -89,7 +89,7 @@ def checkref(logfile):
         if not os.listdir(REF_DIRECTORY):
                 chdir(DOWNLOAD_DIRECTORY)
                 print('Reference Genome is not present. Need to download.')
-                osf.downloadfiles(CONTAINER, REF_FOLDER, False)
+                osf.downloadfiles(CONTAINER, REF_FOLDER)
 		if moveref('genome'): # does this work?
 			print('Reference moved correctly.')
 		# this means that it must also be prepared!
