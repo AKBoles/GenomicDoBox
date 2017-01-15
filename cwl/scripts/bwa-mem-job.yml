@@ -8,4 +8,4 @@ fastq_one:
 fastq_two:
   class: File
   path: input_R2.fastq
-output: step1.sam
+output1: step1.sam

@@ -1,6 +1,7 @@
 cwlVersion: v1.0
 class: CommandLineTool
 baseCommand: [bwa, mem]
+stdout: output.txt
 inputs:
   numthreads:
     type: int
@@ -27,14 +28,16 @@ inputs:
     type: File
     inputBinding:
       position: 4
-  output:
+  output1:
     type: string
     inputBinding:
       position: 5
-      prefix: >
+      prefix: '>'
       separate: true
 outputs: 
+  output:
+    type: stdout
   result:
     type: File
     outputBinding:
-      glob: $(inputs.output)
+      glob: $(inputs.output1)
