@@ -1,0 +1,37 @@
+numInput: 48
+genomeInput:
+  class: File
+  path: /home/cc/RefData/genome_sorted.fa
+fastq_oneInput:
+  class: File
+  path: test_R1.fastq
+fastq_twoInput:
+  class: File
+  path: test_R2.fastq
+output1: step1.sam
+formatInput: 3844
+qualityInput: 10
+output2: step2.sam
+numThreads3: 10
+output3: step3.bam
+sortorder4: coordinate
+output4: step4.bam
+valid4: LENIENT
+createind4: TRUE
+output5: step5.bam
+metrics5: metrics
+createind5: TRUE
+valid5: LENIENT
+removedup5: TRUE
+output6: step6.bam
+rgid6: 2
+rglb6: Unknown
+rgpl6: Illumina
+rgpu6: sampleIndex
+rgsm6: sampleName
+valid6: SILENT
+output7: final.bam
+reference7:
+  class: File
+  path: /home/cc/RefData/genome_sorted.fa
+output8: final.bai
