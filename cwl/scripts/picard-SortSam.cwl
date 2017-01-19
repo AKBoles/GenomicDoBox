@@ -37,7 +37,7 @@ inputs:
       prefix: VALIDATION_STRINGENCY=
       separate: false
   createind:
-    type: string
+    type: boolean
     inputBinding:
       position: 8
       prefix: CREATE_INDEX=

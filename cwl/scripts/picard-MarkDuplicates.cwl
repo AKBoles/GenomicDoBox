@@ -31,7 +31,7 @@ inputs:
       prefix: METRICS_FILE=
       separate: false
   createind:
-    type: string
+    type: boolean
     inputBinding:
       position: 7
       prefix: CREATE_INDEX=
@@ -43,7 +43,7 @@ inputs:
       prefix: VALIDATION_STRINGENCY=
       separate: false
   removedup:
-    type: string
+    type: boolean
     inputBinding:
       position: 9
       prefix: REMOVE_DUPLICATES=

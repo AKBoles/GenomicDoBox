@@ -29,7 +29,15 @@ inputs:
     inputBinding:
       position: 6
       prefix: R=
-      separate: true
+      separate: false
+    secondaryFiles:
+      - ".amb"
+      - ".ann"
+      - ".bwt"
+      - ".fai"
+      - ".pac"
+      - ".sa"
+      - ".dict"
 outputs: 
   result:
     type: File
