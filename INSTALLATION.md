@@ -89,4 +89,13 @@ $ sudo apt-get install python-pip python-dev --yes
     
     > After registering and following the instructions, a very good **Quick Start-Up Guide** can be found at: http://annovar.openbioinformatics.org/en/latest/user-guide/startup/
     
+9. Common Workflow Language
+
+    > Installation documentation as well as other information can be found on the CWL Github page: https://github.com/common-workflow-language/cwltool. To install using Python-Pip, use the following. Note that the first three commands are to first install python-pip and then to upgrade it, if necessary. The fourth command is the CWL installation.
     
+    ~~~
+    $ sudo apt-get install python-pip python-dev --yes
+    $ pip install --upgrade pip --user
+    $ pip install --upgrade setuptools --user
+    $ pip install cwlref-runner --user
+    ~~~
