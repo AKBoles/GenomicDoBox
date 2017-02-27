@@ -51,4 +51,42 @@ $ sudo apt-get install python-pip python-dev --yes
     
     > Successful installation will result in the command displaying all of the functions available to Picard.
 
-4. More instructions to be added as needed.
+4. GATK
+
+    > To download the necessary tools from GATK, registering for a username and password is required. Do that here: http://gatkforums.broadinstitute.org/gatk
+    
+    > Once you have signed up, navigate to https://software.broadinstitute.org/gatk/download/ and download the newest version of GATK via the link.
+    
+    > The file will come in the **tar.bz2** file format and can be uncompressed using the following command.
+    
+    ~~~
+    $ tar -xvjf *filename*.tar.bz2
+    ~~~
+    
+    > This will result in the executable jar file that is called when using GATK commands.
+    
+5. R Programming
+
+    ~~~
+    $ sudo apt-get install r-base --yes
+    ~~~
+    
+6. Perl
+
+    > If using a Linux server, such as Ubuntu 16.04, Perl comes pre-installed. Use the following command to check the version of Perl.
+    
+    ~~~
+    $ perl -v
+    ~~~
+    
+7. Varscan
+
+    > Varscan's executable jar file can be downloaded from the following link: http://varscan.sourceforge.net/ after following the link, navigate to the download page and download the newest version. This is the jar file that is called when using Varscan commands.
+    
+8. Annovar
+
+    > Similar to GATK, Annovar requires pre-registration to download the latest version from the following: http://www.openbioinformatics.org/annovar/annovar_download_form.php
+    
+    > After registering and following the instructions, a very good **Quick Start-Up Guide** can be found at: http://annovar.openbioinformatics.org/en/latest/user-guide/startup/
+    
+    
